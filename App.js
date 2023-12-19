@@ -1,14 +1,17 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet,  View } from 'react-native';
-import HomeScreen from './src/screens/HomeScreen';
-import CoinDetail from './src/screens/CoinDetail';
+import { NavigationContainer } from '@react-navigation/native';
+import Navigation from './src/navigation';
 
 export default function App() {
   return (
+    <NavigationContainer theme={{colors: { background: '#121212'},}}>
     <View style={styles.container}>
-      <CoinDetail />
+      <Navigation/>
       <StatusBar style="light" />
     </View>
+    </NavigationContainer>
   );
 }
 
