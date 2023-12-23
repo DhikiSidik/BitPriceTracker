@@ -39,7 +39,7 @@ const CoinDetail = () => {
         return <ActivityIndicator size="large" />;
     }
 
-    const { image: { small }, symbol, name, market_data: { market_cap_rank, current_price, price_change_percentage_24h }, } = coin;
+    const { id, image: { small }, symbol, name, market_data: { market_cap_rank, current_price, price_change_percentage_24h }, } = coin;
 
     const { prices } = coinMarketData;
     const percentageColor = price_change_percentage_24h < 0 ? '#ea3943' : '#16c784';
@@ -67,7 +67,7 @@ const CoinDetail = () => {
 
     return (
         <View style={{ paddingHorizontal: 10 }}>
-            <CoinDetailedHeader image={small} name={name} symbol={symbol} marketCapRank={market_cap_rank} />
+            <CoinDetailedHeader coinId={id} image={small} name={name} symbol={symbol} marketCapRank={market_cap_rank} />
             <View style={styles.priceContainer}>
                 <View>
                     <Text style={styles.name}>{name}</Text>

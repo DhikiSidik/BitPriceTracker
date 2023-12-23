@@ -36,3 +36,13 @@ export const getMarketData = async () => {
         throw error;
     }
 }
+
+export const getWatchListCoins = async (coinIds) => {
+    try {
+        const response = await axiosRetry.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinIds}&order=market_cap_desc&per_page=250&page=1&sparkline=false&price_change_percentage=24h&locale=en&x_cg_demo_api_key=CG-kqzJEH7GPxTDjGfrPV1YKhzT`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
