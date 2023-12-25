@@ -42,7 +42,7 @@ const CoinDetail = () => {
     const { id, image: { small }, symbol, name, market_data: { market_cap_rank, current_price, price_change_percentage_24h }, } = coin;
 
     const { prices } = coinMarketData;
-    const percentageColor = price_change_percentage_24h < 0 ? '#ea3943' : '#16c784';
+    const percentageColor = price_change_percentage_24h < 0 ? '#ea3943' : '#16c784' || 'white';
     const chartColor = current_price.usd > prices[0][1] ? "#16c784" : "#ea3943";
     const screenWidth = Dimensions.get("window").width;
 
@@ -75,7 +75,7 @@ const CoinDetail = () => {
                 </View>
                 <View style={{ paddingHorizontal: 3, paddingVertical: 8, borderRadius: 5, flexDirection: 'row' }}>
                     <AntDesign name={price_change_percentage_24h < 0 ? 'caretdown' : 'caretup'} size={20} color={percentageColor} style={{ alignSelf: 'center', marginRight: 5 }} />
-                    <Text style={{ color: percentageColor, fontSize: 17, fontWeight: '500' }}>{price_change_percentage_24h.toFixed(2)}%</Text>
+                    <Text style={{ color: percentageColor, fontSize: 17, fontWeight: '500' }}>{price_change_percentage_24h?.toFixed(2)}%</Text>
                 </View>
             </View>
             <View style={{ flexDirection: 'row' }}>
