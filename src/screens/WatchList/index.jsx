@@ -37,8 +37,11 @@ const WatchList = () => {
     }, []);
 
     useEffect(() => {
-        fetchWatchListed();
+        if (WatchListCoinId.length > 0){
+            fetchWatchListed();
+        }
     }, [WatchListCoinId])
+
     return (
         <FlatList 
         data = {coins}

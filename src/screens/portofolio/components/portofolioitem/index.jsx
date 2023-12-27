@@ -17,7 +17,7 @@ const Portofolioitems = ({assetItem}) => {
                 <Text style={styles.titte}>{name}</Text>
                 <Text style={styles.ticker}>{ticker}</Text>
             </View>
-            <View style={{marginLeft: 'auto'}}>
+            <View style={{marginLeft: 'auto', alignItems: 'flex-end'}}>
                 <Text style={styles.titte}>${currentPrice}</Text>
                 <View style={{flexDirection: 'row'}}>
                 <AntDesign name={isChangePositive() ? "caretup" : "caretdown"} size={15} color={isChangePositive() ? "#16c784" : "#ea3943"} style={{ alignSelf: 'center', marginRight: 5 }} />

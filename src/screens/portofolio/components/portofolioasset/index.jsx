@@ -43,7 +43,7 @@ const PortofolioAsset = () => {
                 <View style={styles.balance}>
                     <View>
                         <Text style={styles.currenBalance}>Current Balance</Text>
-                        <Text style={styles.balanceValue}>${getCurrentBalance()}</Text>
+                        <Text style={styles.balanceValue}>${getCurrentBalance().toFixed(2)}</Text>
                         <Text style={{...styles.valueChange, color: isChangePositive() ? 'green' : 'red'}}>${getCurrentValueChange()} (All Time)</Text>
                     </View>
                 <View style={{...styles.percenChange, backgroundColor: isChangePositive() ? 'green' : 'red'}}>
