@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
         marginTop: 50,
     },
     buttonContainer: {
-        backgroundColor: '#4169E1',
         padding: 10,
         alignItems: 'center',
         marginVertical: 30,
@@ -35,7 +34,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     buttonText: {
-        color: 'white',
         fontSize: 17,
         fontWeight: '600',
     },

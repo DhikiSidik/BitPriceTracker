@@ -4,16 +4,19 @@ import { StyleSheet,  View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigation from './src/navigation';
 import WatchListProvider from './src/contexts/WatchlistContext';
+import { RecoilRoot } from 'recoil';
 
 export default function App() {
   return (
     <NavigationContainer theme={{colors: { background: '#121212'},}}>
-      <WatchListProvider>
-        <View style={styles.container}>
-          <Navigation/>
-          <StatusBar style="light" />
-        </View>
-      </WatchListProvider>
+      <RecoilRoot>
+        <WatchListProvider>
+          <View style={styles.container}>
+            <Navigation/>
+            <StatusBar style="light" />
+          </View>
+        </WatchListProvider>
+      </RecoilRoot>
     </NavigationContainer>
   );
 }
