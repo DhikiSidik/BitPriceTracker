@@ -37,16 +37,22 @@ const WatchList = () => {
     }, []);
 
     useEffect(() => {
-        fetchWatchListed();
-    }, [WatchListCoinId])
-    return (
-        <FlatList 
-        data = {coins}
-        renderItem={({item}) => <CoinItem marketCoin={item}/>}
-        refreshControl={
-            <RefreshControl refreshing={loading} tintColor="white"/>
+        if (WatchListCoinId.length > 0){
+            fetchWatchListed();
         }
-        />
+    }, [WatchListCoinId])
+
+    return (
+        <View>
+            <Text style={{fontFamily: 'Inter_900Black', color: 'white', fontSize: 25, letterSpacing: 1, paddingHorizontal: 20, paddingBottom: 10}}>Your WatchList</Text>
+            <FlatList 
+            data = {coins}
+            renderItem={({item}) => <CoinItem marketCoin={item}/>}
+            refreshControl={
+                <RefreshControl refreshing={loading} tintColor="white"/>
+            }
+            />
+        </View>
     )
 };
 

@@ -47,8 +47,15 @@ const CoinDetail = () => {
     const screenWidth = Dimensions.get("window").width;
 
     const formatCurrency = (value) => {
+        "worklet";
         if (value === "") {
+            if (current_price.usd < 1){
+                return `$${current_price.usd}`;
+            }
             return `$${current_price.usd.toFixed(2)}`;
+        }
+        if (current_price.usd < 1){
+            return `$${parseFloat(value)}`;
         }
         return `$${parseFloat(value).toFixed(2)}`;
     };

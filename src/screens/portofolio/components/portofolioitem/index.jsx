@@ -3,24 +3,30 @@ import { View, Text, Image} from 'react-native';
 import styles from "./style";
 import { AntDesign } from '@expo/vector-icons';
 
-const Portofolioitems = () => {
+const Portofolioitems = ({assetItem}) => {
+    const {currentPrice, image, name, priceBought, priceChangePercentage, quantityBought, ticker} = assetItem;
+    
+    const isChangePositive = () => priceChangePercentage >= 0;
+
+    const renderHoldings = () => (quantityBought * currentPrice).toFixed(2)
+
     return (
         <View style={styles.container}>
-            <Image source={{uri: ""}} style={{height: 30, width: 30}} />
+            <Image source={{uri: image}} style={{height: 30, width: 30, marginRight: 10, alignSelf: 'center'}} />
             <View>
-                <Text style={styles.titte}>Bitcoin</Text>
-                <Text style={styles.ticker}>BTC</Text>
+                <Text style={styles.titte}>{name}</Text>
+                <Text style={styles.ticker}>{ticker}</Text>
             </View>
-            <View style={{marginLeft: 'auto'}}>
-                <Text style={styles.titte}>$4000</Text>
+            <View style={{marginLeft: 'auto', alignItems: 'flex-end'}}>
+                <Text style={styles.titte}>${currentPrice}</Text>
                 <View style={{flexDirection: 'row'}}>
-                <AntDesign name={"caretdown"} size={20} color={"#16c784"} style={{ alignSelf: 'center', marginRight: 5 }} />
-                    <Text style={{color: '#16c784',fontWeight: '600'}}>1.2%</Text>
+                <AntDesign name={isChangePositive() ? "caretup" : "caretdown"} size={15} color={isChangePositive() ? "#16c784" : "#ea3943"} style={{ alignSelf: 'center', marginRight: 5 }} />
+                    <Text style={{color: isChangePositive() ? "#16c784" : "#ea3943",fontWeight: '600'}}>{priceChangePercentage.toFixed(2)}%</Text>
                 </View>
             </View>
             <View style={styles.quanti}>
-                <Text style={styles.titte}>$5000</Text>
-                <Text style={styles.ticker}>btc</Text>
+                <Text style={styles.titte}>${renderHoldings()}</Text>
+                <Text style={styles.ticker}>{quantityBought} {ticker}</Text>
             </View>
         </View>
     );

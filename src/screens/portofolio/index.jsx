@@ -1,11 +1,13 @@
-import React from "react";
+import React, { Suspense }from "react";
 import { View, Text, FlatList } from "react-native";
 import PortofolioAsset from './components/portofolioasset';
 
 const PortofolioScreen = () => {
     return (
         <View>
-            <PortofolioAsset />
+            <Suspense fallback={<Text style={{color: 'white'}}></Text>}>
+                <PortofolioAsset />
+            </Suspense>
         </View>
     )
 };

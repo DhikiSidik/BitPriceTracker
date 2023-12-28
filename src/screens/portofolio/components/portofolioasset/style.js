@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     valueChange: {
         fontWeight: '600',
         fontSize: 16,
-        color: '#16c784',
     },
     percen: {
         color: 'white',
@@ -32,7 +31,6 @@ const styles = StyleSheet.create({
     },
     percenChange: {
         flexDirection: 'row',
-        backgroundColor: '#16c784',
         paddingHorizontal: 3,
         paddingVertical: 8,
         borderRadius: 5,
