@@ -5,7 +5,7 @@ import PortofolioAsset from './components/portofolioasset';
 const PortofolioScreen = () => {
     return (
         <View>
-            <Suspense fallback={<Text style={{color: 'white'}}>Loading</Text>}>
+            <Suspense fallback={<Text style={{color: 'white'}}></Text>}>
                 <PortofolioAsset />
             </Suspense>
         </View>

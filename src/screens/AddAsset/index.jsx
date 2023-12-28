@@ -56,6 +56,7 @@ const AddAsset = () => {
     const onAddNewAsset = async () => {
         const newAsset = {
             id: selectedCoin.id,
+            unique_id: selectedCoin.id+Math.random(0, 1e6),
             name: selectedCoin.name,
             image: selectedCoin.image.small,
             ticker: selectedCoin.symbol.toUpperCase(),

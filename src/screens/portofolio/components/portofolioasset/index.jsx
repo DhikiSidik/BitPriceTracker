@@ -5,11 +5,15 @@ import styles from "./style";
 import Portofolioitems from '../portofolioitem';
 import { useNavigation } from "@react-navigation/native";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { allPortofolioAssets } from '../../../../atom/potofolioAsset';
+import { allPortofolioAssets,allPortofolioBoughtAssetsInStorage } from '../../../../atom/potofolioAsset';
+import { SwipeListView } from 'react-native-swipe-list-view';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const PortofolioAsset = () => {
     const navigation = useNavigation();
     const assets = useRecoilValue(allPortofolioAssets);
+    const [storageAssets, setStorageAssets] = useRecoilState(allPortofolioBoughtAssetsInStorage);
 
     const getCurrentBalance = () => assets.reduce((total, currentAsset) => total + currentAsset.currentPrice * currentAsset.quantityBought, 0);
 
@@ -29,15 +33,32 @@ const PortofolioAsset = () => {
             return 0;
         }
     };
-    
+
+    const onDeleteAssets = async (asset) => {
+        const newAssets = storageAssets.filter((coin) => coin.unique_id !== asset.item.unique_id)
+        const jasonValue = JSON.stringify(newAssets);
+        await AsyncStorage.setItem("@portofolio_coin", jasonValue)
+        setStorageAssets(newAssets);
+    };
+
+    const renderDeleteButton = (data) => {
+        return (
+            <Pressable style={{ flex: 1, backgroundColor: '#EA3943', alignItems: 'flex-end', justifyContent: 'center', paddingRight: 27, marginLeft: 20 }} onPress={() => onDeleteAssets(data)}>
+                <FontAwesome name="trash-o" size={30} color="white" />
+            </Pressable>
+        );
+    };    
 
     const isChangePositive = () => getCurrentValueChange() >= 0;
 
     return (
-        <View>
-            <FlatList
+            <SwipeListView
             data={assets}
             renderItem={({item}) => <Portofolioitems assetItem={item}/>}
+            rightOpenValue={-75}
+            disableRightSwipe
+            keyExtractor={({id}, index) => `${id}${index}`}
+            renderHiddenItem={(data) => renderDeleteButton(data)}
             ListHeaderComponent={
                 <>
                 <View style={styles.balance}>
@@ -60,7 +81,6 @@ const PortofolioAsset = () => {
                 </Pressable>
             }
             />
-        </View>
     )
 };
 
